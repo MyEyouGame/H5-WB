@@ -783,6 +783,10 @@
 	var count = 0;
 	var gg;
 	
+	var c1;
+	var c2;
+	var c3;
+	
 	function check() {
 		
 		if (count == 0) {
@@ -797,9 +801,13 @@
 			count2 = 0;
 			count3 = 0;
 			
-			posStop1 = 115.78;
+			/* posStop1 = 115.78;
 			posStop2 = 150.85;
-			posStop3 = 185.88;
+			posStop3 = 185.88; */
+			
+			posStop1 = 9.95;
+			posStop2 = 44.97;
+			posStop3 = 80.05;
 			
 			posStartSlow1 = posStop1 - 9;
 			posStartSlow2 = posStop2 - 9;
@@ -829,9 +837,13 @@
 			count2 = 0;
 			count3 = 0;
 			
-			posStop1 = 125.55;
+			/* posStop1 = 125.55;
 			posStop2 = 160.6;
-			posStop3 = 195.63;
+			posStop3 = 195.63; */
+			
+			posStop1 = 19.72;
+			posStop2 = 54.77;
+			posStop3 = 89.8;
 			
 			posi2 = posStop2;
 			
@@ -873,9 +885,13 @@
 			count2 = 0;
 			count3 = 0;
 			
-			posStop1 = 135.27;
+			/* posStop1 = 135.27;
 			posStop2 = 170.27;
-			posStop3 = 205.3;
+			posStop3 = 205.3; */
+			
+			posStop1 = 29.44;
+			posStop2 = 64.44;
+			posStop3 = 99.47;
 			
 			posi2 = posStop2;
 			
@@ -921,6 +937,10 @@
 		start2();
 		start3();
 		
+		c1 = 0;
+		c2 = 0;
+		c3 = 0;
+		
 		light1.style.display = "none";
 		light2.style.display = "none";
 		light3.style.display = "none";
@@ -960,7 +980,7 @@
 	}
 	
 	function start1() {
-		if (pos1 > posStartSlow1 || count1 == 1) {			
+		if (pos1 > posStartSlow1 && c1 === 1 || count1 == 1 ) {			
 			if (count1 == 1) {
 				pos1-=0.1;
 				col1.style.backgroundPosition = 0 + "%" + " " + pos1 + "%";
@@ -990,6 +1010,10 @@
 			pos1 += 0.8;
 			col1.style.backgroundPosition = 0 + "%" + " " + pos1 + "%";
 			aa = requestAnimationFrame(start1);
+			if (pos1 >=105.6) {
+				pos1 = 0.23;
+				c1 = 1;
+			}
 		}
 	}
 	
@@ -1024,6 +1048,10 @@
 			pos2 += 0.7;
 			col2.style.backgroundPosition = 0 + "%" + " " + pos2 + "%";
 			bb = requestAnimationFrame(start2);
+			if (pos2 >=105.6) {
+				pos2 = 0.23;
+				c2 = 1;
+			}
 		}
 	}
 	
@@ -1069,6 +1097,10 @@
 			pos3 += 0.6;
 			col3.style.backgroundPosition = 0 + "%" + " " + pos3 + "%";
 			cc = requestAnimationFrame(start3);
+			if (pos3 >=105.6) {
+				pos3 = 0.23;
+				c3 = 1;
+			}
 		}
 	}
 	
