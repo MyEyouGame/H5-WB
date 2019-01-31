@@ -1018,7 +1018,7 @@
 	}
 	
 	function start2() {
-		if (pos2 > posStartSlow2 || count2 == 1) {			
+		if (pos2 > posStartSlow2 && c2 === 1 || count2 == 1) {			
 			if (count2 == 1) {
 				pos2-=0.1;
 				col2.style.backgroundPosition = 0 + "%" + " " + pos2 + "%";
@@ -1056,7 +1056,7 @@
 	}
 	
 	function start3() {
-		if (pos3 > posStartSlow3 || count3 == 1) {			
+		if (pos3 > posStartSlow3 && c3 === 1 || count3 == 1) {			
 			if (count3 == 1) {
 				pos3-=0.1;
 				col3.style.backgroundPosition = 0 + "%" + " " + pos3 + "%";
