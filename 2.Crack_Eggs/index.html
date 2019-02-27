@@ -375,7 +375,7 @@
 	
 	#eggtop.crack {
 		display: block;
-		animation: crack 0.5s 1;
+		animation: crack 0.3s 1;
 	}
 	
 	@keyframes crack {
@@ -398,7 +398,7 @@
 	
 	#eggbtm.crack {
 		display: block;
-		animation: crackbtm 0.5s 1;
+		animation: crackbtm 0.3s 1;
 	}
 	
 	@keyframes crackbtm {
@@ -439,7 +439,7 @@
 		background-repeat: no-repeat;
 		background-Size: 100%;
 		background-position: 0% 0%;
-		animation: flame-explode 0.6s steps(6);
+		animation: flame-explode 0.3s steps(6);
 		display: none;
 	}
 	
@@ -624,7 +624,7 @@
 		background-repeat: no-repeat;
 		background-size: 100%;
 		background-position: 0% 0%;
-		animation: coin-burst 0.5s steps(5);
+		animation: coin-burst 0.3s steps(5);
 		display: none;
 	}
 	
@@ -642,7 +642,7 @@
 		background-repeat: no-repeat;
 		background-size: 100%;
 		background-position: 0% 0%;
-		animation: coin-burst 0.5s steps(4);
+		animation: coin-burst 0.3s steps(4);
 		display: none;
 		opacity: 0.8;
 	}
@@ -759,8 +759,6 @@
 </div>
 
 <script id="x">
-	
-
 
 
 window.requestAnimFrame = (function(){
@@ -803,8 +801,26 @@ window.requestAnimFrame = (function(){
 	function lp() {
 		mv = setTimeout(main, 500);
 		
-		bgm.autoplay = true;
-		bgm.load();
+		
+		bgm.load()
+		let playPromise = bgm.play()
+		if (playPromise !== undefined) {
+			playPromise.then(() => {
+				bgm.play()
+			}).catch(()=> {
+			   
+			})
+		}
+		
+		eggAppear.load()
+		let playPromise1 = eggAppear.play()
+		if (playPromise1 !== undefined) {
+			playPromise1.then(() => {
+				eggAppear.play()
+			}).catch(()=> {
+			   
+			})
+		}
 	}
 	
 	function main(){
@@ -820,8 +836,6 @@ window.requestAnimFrame = (function(){
 		
 		sizeData(newWidth,newHeight);
 		resize(newWidth,newHeight);	
-		
-		eggAppear.play();
 	}
 	
 	var hammer = document.querySelector("#hammer");
@@ -854,6 +868,7 @@ window.requestAnimFrame = (function(){
 	var eggCrackPet = document.getElementById("eggCrackPet");
 	var eggAppear = document.getElementById("eggAppear");
 	
+	var counter = 0;
 	var count = 0;
 	var energy = 0;
 	
@@ -934,7 +949,10 @@ window.requestAnimFrame = (function(){
 			firstPrize.style.display = "block";
 			lose.play();
 			lose.onended = function() {
-				reset("clear");
+				if (counter === 0){
+					reset("clear");
+					counter = 1;
+				}
 			}
 		}else if (count === 2) {
 			secondPrize.style.display = "block";
@@ -1040,8 +1058,9 @@ window.requestAnimFrame = (function(){
 			collect();
 		}
 		
-		if (data !== "" || data === "eggbtm" || data === "firstPrize" && firstPrize.style.display === "block") {
+		if (data !== "" && firstPrize.style.display === "block" && counter === 0) {
 			reset("clear");
+			counter = 1;
 		}
 	}
 	
@@ -1143,6 +1162,8 @@ window.requestAnimFrame = (function(){
 	
 	 window.addEventListener("orientationchange", function() {location.reload();}, false);
      document.getElementById("x").innerHTML = "";
+	 
+	 
 </script>
 
 <noscript> 
