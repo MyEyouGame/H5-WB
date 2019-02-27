@@ -800,27 +800,8 @@ window.requestAnimFrame = (function(){
 
 	function lp() {
 		mv = setTimeout(main, 500);
-		
-		
-		bgm.load()
-		let playPromise = bgm.play()
-		if (playPromise !== undefined) {
-			playPromise.then(() => {
-				bgm.play()
-			}).catch(()=> {
-			   
-			})
-		}
-		
-		eggAppear.load()
-		let playPromise1 = eggAppear.play()
-		if (playPromise1 !== undefined) {
-			playPromise1.then(() => {
-				eggAppear.play()
-			}).catch(()=> {
-			   
-			})
-		}
+		bgm.load();
+		eggAppear.load();
 	}
 	
 	function main(){
@@ -836,6 +817,25 @@ window.requestAnimFrame = (function(){
 		
 		sizeData(newWidth,newHeight);
 		resize(newWidth,newHeight);	
+		
+		let playPromise = bgm.play();
+		if (playPromise !== undefined) {
+			playPromise.then(() => {
+				bgm.play();
+			}).catch(()=> {
+			   
+			})
+		}
+		
+		
+		let playPromise1 = eggAppear.play();
+		if (playPromise1 !== undefined) {
+			playPromise1.then(() => {
+				eggAppear.play();
+			}).catch(()=> {
+			   
+			})
+		}
 	}
 	
 	var hammer = document.querySelector("#hammer");
