@@ -392,6 +392,7 @@
 				background-Size : 100% 100%; 
 				z-index:5;
 				transform-origin: 0% 0%;
+				-webkit-transform-origin: 0% 0%;
 				filter: brightness(150%);
 				-webkit-filter: brightness(150%);
 				animation: latern1 3s infinite alternate;
@@ -427,6 +428,7 @@
 				background-Size : 100% 100%; 
 				z-index:5;	
 				transform-origin: 100% 0%;
+				-webkit-transform-origin: 100% 0%;
 				filter: brightness(150%);
 				-webkit-filter: brightness(150%);
 				animation: latern1 3s infinite alternate;
@@ -765,19 +767,6 @@
 				background-Size : 100% 100%; 
 				display:none;
 			}
-			#blueFish1{
-				position: absolute;
-				height: 12%;
-				width: 54%;
-				top: 55%;
-				left: 31%;
-				z-index: 3;
-				transform: scaleX(-1);
-				background-repeat: no-repeat;
-				background-Size: 100% 100%;
-				
-				display:none;
-			}
 			#blackFish{
 				position: absolute;
 				height: 11%;
@@ -984,7 +973,7 @@
 						width: 57%;
 						top: -1%;
 						left: 43%;
-						transform: scaleX(1.1) scaleY(1.1);
+						-webkit-transform: scaleX(1.1) scaleY(1.1);
 					}
 					100%{
 						height: 38%;
@@ -1041,13 +1030,13 @@
 				}
 				@-webkit-keyframes stamp{
 					0%{
-						transform: scaleX(3) scaleY(3);
+						-webkit-transform: scaleX(3) scaleY(3);
 					 }
 					 20%{
-						transform: scaleX(1) scaleY(1);
+						-webkit-transform: scaleX(1) scaleY(1);
 					 }
 					100%{
-						transform: scaleX(1) scaleY(1);
+						-webkit-transform: scaleX(1) scaleY(1);
 					}
 				}
 			#reward{
@@ -1438,6 +1427,7 @@
     left: 25%;
     top: 12.5%;
 	animation-play-state: paused;
+	-webkit-animation-play-state: paused;
 }
 
 .wrapper .pie {
@@ -1445,6 +1435,7 @@
   width: 50%;
   height: 100%;
   transform-origin: 100% 50%;
+  -webkit-transform-origin: 100% 50%;
   position: absolute;
   border: 5px solid rgba(92,255,77,1);
 }
@@ -1456,6 +1447,8 @@
   border-right: none;
   animation: rota 5s linear forwards;
   animation-play-state: inherit;
+  -webkit-animation: rota 5s linear forwards;
+  -webkit-animation-play-state: inherit;
 }
 
 .wrapper .filler {
@@ -1466,6 +1459,8 @@
   z-index: 101;
   animation: opa 5s steps(1, end) forwards reverse;
   animation-play-state: inherit;
+  -webkit-animation: opa 5s steps(1, end) forwards reverse;
+  -webkit-animation-play-state: inherit;
   border-left: none;
 }
 
@@ -1475,6 +1470,8 @@
     z-index: 201;
     animation: filler2 5s steps(1, end) forwards;
 	animation-play-state: inherit;
+    -webkit-animation: filler2 5s steps(1, end) forwards;
+	-webkit-animation-play-state: inherit;
     border: 7px solid gray; 
 	border-right: none;
 }
@@ -1497,6 +1494,8 @@
   z-index: 300;
   animation: opa 5s steps(1, end) forwards;
   animation-play-state: inherit;
+  -webkit-animation: opa 5s steps(1, end) forwards;
+  -webkit-animation-play-state: inherit;
 }
 
 @keyframes rota {
@@ -1516,6 +1515,30 @@
   }
 }
 @keyframes filler2 {
+  0% {
+    z-index:201
+  }
+  50%, 100% {
+    z-index:100
+  }
+}
+@-webkit-keyframes rota {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes opa {
+  0% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes filler2 {
   0% {
     z-index:201
   }
@@ -1627,8 +1650,8 @@
 					100% {transform: rotate(10deg);}					
 				}
 				@-webkit-keyframes shake {
-					0% {transform: rotate(-10deg);}					
-					100% {transform: rotate(10deg);}					
+					0% {-webkit-transform: rotate(-10deg);}					
+					100% {-webkit-transform: rotate(10deg);}					
 				}
 				.tumblerCry{
 					position: absolute;
@@ -2517,6 +2540,7 @@ var timeouts;
 			
 			function startGame() {
 				sushi3.style.animation = "sushiEat 0.7s forwards";
+				sushi3.style.webkitAnimation = "sushiEat 0.7s forwards";
 				setTimeout(createAllFish, 1000);
 				sushi3.removeEventListener("animationend", startGame);
 			}
@@ -2784,9 +2808,11 @@ var timeouts;
 		fish = document.querySelector("#"+b);
 		if (x < 0.5) {
 			fish.style.transform = "scaleX(-1)";
+			fish.style.webkitTransform = "scaleX(-1)";
 			fishmoveRight(b, Math.random()+0.2);
 		}else {
 			fish.style.transform = "scaleX(1)";
+			fish.style.webkitTransform = "scaleX(1)";
 			fishmoveLeft(b, Math.random()+0.2);	
 		}
 		if (y < 0.15) {
@@ -2863,7 +2889,7 @@ var timeouts;
 		for (i = 0; i < fishArray.length; i++) { 
 			cancelAnimationFrame(a[fishArray[i]]);
 			var el = document.querySelector("#"+fishArray[i]);
-			var direction = el.style.transform;
+			var direction = el.style.transform | el.style.webkitTransform;
 			var pos = el.style.left.split("%")[0];
 			if (direction == "scaleX(1)"){
 				fishOutLeft(fishArray[i], pos);
