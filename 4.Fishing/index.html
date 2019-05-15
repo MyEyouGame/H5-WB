@@ -2889,7 +2889,7 @@ var timeouts;
 		for (i = 0; i < fishArray.length; i++) { 
 			cancelAnimationFrame(a[fishArray[i]]);
 			var el = document.querySelector("#"+fishArray[i]);
-			var direction = el.style.transform | el.style.webkitTransform;
+			var direction = el.style.transform || el.style.webkitTransform;
 			var pos = el.style.left.split("%")[0];
 			if (direction == "scaleX(1)"){
 				fishOutLeft(fishArray[i], pos);
