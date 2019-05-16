@@ -1446,9 +1446,9 @@
   top: 1%;
   z-index: 200;
   border-right: none;
-  animation: rota 3s linear forwards;
+  animation: rota 1.5s linear forwards;
   animation-play-state: inherit;
-  -webkit-animation: rota 3s linear forwards;
+  -webkit-animation: rota 1.5s linear forwards;
   -webkit-animation-play-state: inherit;
 }
 
@@ -1458,9 +1458,9 @@
   left: 50%;
   opacity: 0;
   z-index: 101;
-  animation: opa 3s steps(1, end) forwards reverse;
+  animation: opa 1.5s steps(1, end) forwards reverse;
   animation-play-state: inherit;
-  -webkit-animation: opa 3s steps(1, end) forwards reverse;
+  -webkit-animation: opa 1.5s steps(1, end) forwards reverse;
   -webkit-animation-play-state: inherit;
   border-left: none;
 }
@@ -1469,9 +1469,9 @@
     border-radius: 100% 0 0 100% / 50% 0 0 50%;
     opacity: 1;
     z-index: 201;
-    animation: filler2 3s steps(1, end) forwards;
+    animation: filler2 1.5s steps(1, end) forwards;
 	animation-play-state: inherit;
-    -webkit-animation: filler2 3s steps(1, end) forwards;
+    -webkit-animation: filler2 1.5s steps(1, end) forwards;
 	-webkit-animation-play-state: inherit;
     border: 7px solid gray; 
 	border-right: none;
@@ -1493,9 +1493,9 @@
   background: inherit;
   opacity: 1;
   z-index: 300;
-  animation: opa 3s steps(1, end) forwards;
+  animation: opa 1.5s steps(1, end) forwards;
   animation-play-state: inherit;
-  -webkit-animation: opa 3s steps(1, end) forwards;
+  -webkit-animation: opa 1.5s steps(1, end) forwards;
   -webkit-animation-play-state: inherit;
 }
 
@@ -3278,7 +3278,7 @@ var timeouts;
 				touchBg.style.webkitAnimationPlayState = "paused";
 				document.querySelector(".wrapper").style.animationPlayState = "paused";
 				status = 1;
-			}, 3000);
+			}, 1500);
 	}
 	
 	function clearTimeToLose(i) {
