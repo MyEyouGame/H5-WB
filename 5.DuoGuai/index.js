@@ -215,6 +215,7 @@
 	
 	function eventadd() {
 		container.addEventListener("mousemove", characterMove);
+		container.addEventListener("touchmove", touchCharacterMove);
 	}
 	
 	function characterMove() {
