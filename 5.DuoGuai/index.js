@@ -80,6 +80,7 @@
 			startPage.addEventListener("animationend", function(){
 				startPage.style.display = "none";
 				startGame();
+				eventadd();
 			});
 		});
 		
@@ -110,12 +111,20 @@
 			// var oEvent = oEvent||event;  
 	    // }
 
+
 	
 	function startGame() {
 		CAnimation();
 		character.style.zIndex = "1";
-		setInterval(chooseMonster, 500);
-		eventadd();
+		timer = setInterval(chooseMonster, 500);
+		resetLife();
+	}
+	
+	function resetLife() {
+		for (i=1; i<4;i++) {
+			health = document.querySelector("#health"+i);
+			health.classList.remove("healthOFF");
+		}
 	}
 	
 	var status1 = {};
@@ -216,6 +225,7 @@
 	function eventadd() {
 		container.addEventListener("mousemove", characterMove);
 		container.addEventListener("touchmove", touchCharacterMove);
+		againLose.addEventListener("click", restart);
 	}
 	
 	function characterMove() {
@@ -243,7 +253,10 @@
 		character.style.left = (x-(x*0.12)) +'px';
 	}
 	
-	
+	function restart() {
+		loseContainer.style.display = "none";
+		startGame();
+	}
 	
 	
 	
@@ -254,6 +267,7 @@
     function lose1(){
 		loseContainer.style.display = "block";
 		character.style.zIndex = "0";
+		clearInterval(timer);
 	
 		var ag = "none";
 			document.getElementById('againButton').style.display = ag;
